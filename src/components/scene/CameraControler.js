@@ -15,8 +15,9 @@ export const updateCameraPosition = (camera, mouseX, mouseY, width, height) => {
     const horizontalMove = xRatio * MAX_HORIZONTAL_MOVE;
 
     // 更新摄像机的位置
-    camera.position.y = Math.max(1, Math.min(5, INITIAL_CAMERA_HEIGHT + verticalMove)); // 限制在 [1, 5] 范围内
-    camera.position.x = Math.max(-2, Math.min(2, horizontalMove)); // 限制在 [-2, 2] 范围内
+    camera.position.y = Math.max(1, Math.min(5, INITIAL_CAMERA_HEIGHT + verticalMove));
+    camera.position.x = Math.max(-2, Math.min(2, horizontalMove));
 
-    camera.lookAt(0, 0, 0); // 让相机朝向场景中心
+    // 让相机朝向场景中心
+    camera.lookAt(0, 0, 0);
 };

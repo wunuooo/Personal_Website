@@ -1,19 +1,15 @@
-// src/geometry/createGeometry.js
+// src/geometry/GeometryCreator.js
 import * as THREE from 'three';
+import { workDetails } from '../../data/WorkData'; // 导入共享的工作数据
 
-const RADIUS = 4; // 定义 RADIUS
+const RADIUS = 4;
 
 export const createGeometry = () => {
-    const objects = [
-        { color: 0x00ff00, route: '/works/work1' },
-        { color: 0xff0000, route: '/works/work2' },
-        { color: 0x0000ff, route: '/works/work3' },
-        { color: 0x0000ff, route: '/works/work3' },
-        { color: 0x0000ff, route: '/works/work3' },
-        { color: 0x0000ff, route: '/works/work3' },
-        { color: 0x0000ff, route: '/works/work3' },
-        // ... more objects
-    ];
+    // 创建几何体对象数组，根据 workDetails 中的工作数目
+    const objects = Object.keys(workDetails).map(key => ({
+        color: Math.random() * 0xffffff, // 为每个工作生成一个随机颜色（你可以根据需要自定义颜色）
+        route: `/works/${key}`,
+    }));
 
     return objects.map((obj, index) => {
         const geometry = new THREE.PlaneGeometry(1.6, 1);
@@ -32,4 +28,4 @@ export const createGeometry = () => {
     });
 };
 
-export { RADIUS }; // 导出 RADIUS
+export { RADIUS };
