@@ -1,36 +1,16 @@
 // src/data/workData.js
-export const workDetails = {
-    work1: {
-        title: '工作 1',
-        description: '这里是工作 1 的详细描述。',
-        date: '2024年8月',
-        projectType: '类型 A',
-        imageUrl: '/path/to/image1.jpg',
-        participants: ['Alice', 'Bob'],
-    },
-    work2: {
-        title: '工作 2',
-        description: '这里是工作 2 的详细描述。',
-        date: '2024年7月',
-        projectType: '类型 B',
-        imageUrl: '/path/to/image2.jpg',
-        participants: ['Charlie', 'David'],
-    },
-    work3: {
-        title: '工作 3',
-        description: '这里是工作 3 的详细描述。',
-        date: '2024年6月',
-        projectType: '类型 C',
-        imageUrl: '/path/to/image3.jpg',
-        participants: ['Eve', 'Frank'],
-    },
-    work4: {
-        title: '工作 4',
-        description: '这里是工作 4s 的详细描述。',
-        date: '2024年6月',
-        projectType: '类型 C',
-        imageUrl: '/path/to/image3.jpg',
-        participants: ['Eve', 'Frank'],
-    },
-    // 添加更多工作...
-};
+const workContext = require.context('./works', false, /\.js$/);
+
+const workDetails = workContext.keys().reduce((acc, path) => {
+    // 从文件名中提取工作名称，例如 './work1.js' 提取为 'work1'
+    const workName = path.replace('./', '').replace('.js', '');
+
+    // 动态加载该模块并提取其中的工作对象
+    const workModule = workContext(path);
+
+    // 将工作对象加入到结果集中，使用正确的导出名称
+    acc[workName] = workModule[workName];  // 从模块中获取导出的对象
+    return acc;
+}, {});
+
+export { workDetails };
