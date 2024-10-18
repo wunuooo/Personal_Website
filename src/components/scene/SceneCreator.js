@@ -12,7 +12,7 @@ export const createScene = (mountElement, navigate) => {
         0.1,
         1000
     );
-    camera.position.set(0, 2, 10);
+    camera.position.set(0, 0, 10);
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });

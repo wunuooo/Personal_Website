@@ -46,6 +46,7 @@ export const animateScene = (renderer, scene, camera, meshes) => {
             mesh.scale.lerp(mesh.userData.currentScale || mesh.userData.originalScale, SCALE_LERP_FACTOR);
 
             mesh.rotation.y = -currentAngle;
+            // mesh.rotation.y = -(currentAngle + Math.PI / 2);
         });
     };
 

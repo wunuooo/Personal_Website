@@ -41,7 +41,7 @@ export const createEventHandlers = (mountElement, camera, meshes, navigate, upda
                 const currentHoveredObject = intersects[0].object;
                 if (currentHoveredObject !== hoveredObject) {
                     currentHoveredObject.userData.currentY = currentHoveredObject.userData.originalY + 0.3; // Increase height
-                    currentHoveredObject.userData.currentScale = new THREE.Vector3(1.7, 1.7, 1.7); // Increase scale
+                    currentHoveredObject.userData.currentScale = new THREE.Vector3(1.1, 1.1, 1.1); // Increase scale
                     hoveredObject = currentHoveredObject;
                 }
             }
