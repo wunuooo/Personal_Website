@@ -22,10 +22,6 @@ export const createEventHandlers = (mountElement, camera, meshes, navigate, upda
     };
 
     const onMouseMove = (event) => {
-        const rect = mountElement.getBoundingClientRect();
-        const mouseY = event.clientY - rect.top;
-        const isTopHalf = mouseY < rect.height / 2;
-
         const intersects = onObjNum(event);
         mountElement.style.cursor = intersects.length > 0 ? 'pointer' : 'auto';
 
@@ -52,7 +48,7 @@ export const createEventHandlers = (mountElement, camera, meshes, navigate, upda
             const deltaTime = event.timeStamp - lastTime;
             currentSpeed = deltaX / deltaTime;
 
-            updateRotationSpeed(isTopHalf ? currentSpeed : -currentSpeed);
+            updateRotationSpeed(-currentSpeed);
 
             lastMouseX = event.clientX;
             lastTime = event.timeStamp;

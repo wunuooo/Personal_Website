@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { createScene } from './scene/SceneCreator';
 import { createEventHandlers } from './scene/EventHandlers';
 import { animateScene } from './scene/SceneAnimator';
-import { updateCameraPosition, updateCameraZoom } from './scene/CameraControler';
+import { updateCameraPosition } from './scene/CameraControler';
 
 const ThreeScene = () => {
     const mountRef = useRef(null);
@@ -39,10 +39,6 @@ const ThreeScene = () => {
             const updateRotationSpeed = animateScene(renderer, scene, camera, meshes);
             const { onMouseClick, onMouseMove, onMouseDown, onMouseUp } = createEventHandlers(mountElement, camera, meshes, navigate, updateRotationSpeed);
 
-            const handleWheel = (event) => {
-                updateCameraZoom(camera, event.deltaY);
-            };
-
             window.addEventListener('mousemove', (event) => {
                 onMouseMove(event);
                 updateCameraPosition(camera, event.clientX, event.clientY, mountElement.clientWidth, mountElement.clientHeight);
@@ -50,7 +46,6 @@ const ThreeScene = () => {
             window.addEventListener('mousedown', onMouseDown);
             window.addEventListener('mouseup', onMouseUp);
             window.addEventListener('click', onMouseClick);
-            window.addEventListener('wheel', handleWheel);
 
             const handleResize = () => {
                 const width = mountElement.clientWidth;
@@ -68,7 +63,6 @@ const ThreeScene = () => {
                 window.removeEventListener('mousedown', onMouseDown);
                 window.removeEventListener('mouseup', onMouseUp);
                 window.removeEventListener('click', onMouseClick);
-                window.removeEventListener('wheel', handleWheel);
                 window.removeEventListener('resize', handleResize);
             };
         }
