@@ -45,8 +45,8 @@ export const animateScene = (renderer, scene, camera, meshes) => {
             // 平滑过渡缩放
             mesh.scale.lerp(mesh.userData.currentScale || mesh.userData.originalScale, SCALE_LERP_FACTOR);
 
-            mesh.rotation.y = -currentAngle;
-            // mesh.rotation.y = -(currentAngle + Math.PI / 2);
+            // 在旋转过程中实时改变物件位置
+            mesh.rotation.y = -(currentAngle - Math.PI / 2);
         });
     };
 

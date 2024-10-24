@@ -12,12 +12,22 @@ import Footer from './components/Footer';
 import { ReactLenis } from 'lenis/react';
 
 const App = () => {
+  const lenisOptions = {
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    direction: 'vertical',
+    gestureDirection: 'vertical',
+    smooth: true,
+    smoothTouch: false,
+    touchMultiplier: 2,
+  };
+
   return (
-    <ReactLenis root>
+    <ReactLenis root options={lenisOptions}>
       <Router>
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col">
           <Navbar />
-          <main className="flex-grow">
+          <main>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/works" element={<Works />} />

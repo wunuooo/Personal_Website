@@ -1,8 +1,9 @@
 // src/geometry/GeometryCreator.js
 import * as THREE from 'three';
 import { workDetails } from '../../data/WorkData'; // 导入共享的工作数据
+import { RoundedRectangle } from './RoundedRecCreator';
 
-const RADIUS = 2;
+const RADIUS = 4;
 
 export const createGeometry = () => {
     const loader = new THREE.TextureLoader();
@@ -20,18 +21,12 @@ export const createGeometry = () => {
             side: THREE.DoubleSide, // 双面材质，确保两面都可见
         };
     });
-    return objects.map((obj, index) => {
-        const geometry = new THREE.PlaneGeometry(3, 5);
+    return objects.map((obj) => {
+        const geometry = RoundedRectangle(2, 3, 0.3, 10);
         const material = new THREE.MeshBasicMaterial({ map: obj.map, side: THREE.DoubleSide });
         const mesh = new THREE.Mesh(geometry, material);
         mesh.userData.route = obj.route;
-        mesh.userData.originalY = 0;  // Initial height
-
-        // const angle = (index / objects.length) * Math.PI * 2;
-        // const x = RADIUS * Math.cos(angle);
-        // const z = RADIUS * Math.sin(angle);
-        // mesh.position.set(x, mesh.userData.originalY, z);
-        // mesh.rotation.y = -(Math.PI / 4);
+        mesh.userData.originalY = 0;
 
         return mesh;
     });

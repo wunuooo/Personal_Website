@@ -6,7 +6,9 @@ const Navbar = () => {
         <nav className="navbar">
             <div className="fixed top-0 w-full z-10 my-8">
                 <div className="container mx-auto flex justify-between items-center">
-                    <div className="text-black text-xl">网站图标在这里</div>
+                    <div>
+                        <img src="/icon.png" alt="网站图标" width="80" />
+                    </div>
                     <div>
                         <Link to="/" className="text-black mx-2">Home</Link>
                         <Link to="/works" className="text-black mx-2">Works</Link>

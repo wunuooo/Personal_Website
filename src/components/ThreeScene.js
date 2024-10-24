@@ -1,10 +1,10 @@
 // src/components/ThreeScene.js
 import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createScene } from './scene/SceneCreator';
-import { createEventHandlers } from './scene/EventHandlers';
-import { animateScene } from './scene/SceneAnimator';
-import { updateCameraPosition } from './scene/CameraControler';
+import { createScene } from './utils/SceneCreator';
+import { createEventHandlers } from './utils/EventHandlers';
+import { animateScene } from './utils/SceneAnimator';
+import { updateCameraPosition } from './utils/CameraControler';
 
 const ThreeScene = () => {
     const mountRef = useRef(null);
