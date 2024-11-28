@@ -1,10 +1,12 @@
 // src/scene/SceneAnimator.js
 import * as THREE from 'three';
 import { RADIUS } from './GeometryCreator';
+import { CAMERAHEIGHT } from './CameraControler'
 
 export const animateScene = (renderer, scene, camera, meshes) => {
     let angleOffset = 0;
     let rotationSpeed = 0;
+    let radius = RADIUS;
     const ROTATION_DAMPING_FACTOR = 0.85;
     const ROTATION_SPEED_FACTOR = 0.02;
     const HEIGHT_LERP_FACTOR = 0.2; // 控制高度平滑过渡的速度
@@ -33,8 +35,8 @@ export const animateScene = (renderer, scene, camera, meshes) => {
         meshes.forEach((mesh, index) => {
             const offset = (index / meshes.length) * Math.PI * 2;
             const currentAngle = angleOffset + offset;
-            const x = RADIUS * Math.cos(currentAngle);
-            const z = RADIUS * Math.sin(currentAngle);
+            const x = radius * Math.cos(currentAngle);
+            const z = radius * Math.sin(currentAngle);
 
             mesh.position.x = x;
             mesh.position.z = z;
@@ -47,6 +49,7 @@ export const animateScene = (renderer, scene, camera, meshes) => {
 
             // 在旋转过程中实时改变物件位置
             mesh.rotation.y = -(currentAngle - Math.PI / 2);
+
         });
     };
 
@@ -54,16 +57,24 @@ export const animateScene = (renderer, scene, camera, meshes) => {
         rotationSpeed = newSpeed;
     };
 
+    function objScrollTransform() {
+        const t = document.body.getBoundingClientRect().top;
+        radius = RADIUS + 0.01 * t;
+        camera.position.y = CAMERAHEIGHT + 0.01 * t;
+        console.log(`t ${t} radius ${radius} y ${camera.position.y}`);
+    }
+    document.body.onscroll = objScrollTransform;
+
     const animate = () => {
         requestAnimationFrame(animate);
 
         angleOffset += rotationSpeed * ROTATION_SPEED_FACTOR;
-        updateMeshes();
-
         rotationSpeed *= ROTATION_DAMPING_FACTOR;
         if (Math.abs(rotationSpeed) < 0.001) {
             rotationSpeed = 0;
         }
+
+        updateMeshes();
 
         renderer.render(scene, camera);
     };

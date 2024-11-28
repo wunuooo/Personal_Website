@@ -1,6 +1,7 @@
 // src/scene/CreateScene.js
 import * as THREE from 'three';
-import { createGeometry } from './GeometryCreator';
+import { createGeometry, createStars } from './GeometryCreator';
+import { CAMERAHEIGHT } from './CameraControler'
 
 export const createScene = (mountElement, navigate) => {
     const scene = new THREE.Scene();
@@ -12,8 +13,10 @@ export const createScene = (mountElement, navigate) => {
         0.1,
         1000
     );
-    camera.position.set(0, 0, 10);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(0, CAMERAHEIGHT, 10);
+
+    // const gridHelper = new THREE.GridHelper(200.50);
+    // scene.add(gridHelper);
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -22,6 +25,11 @@ export const createScene = (mountElement, navigate) => {
 
     const meshes = createGeometry();
     meshes.forEach(mesh => scene.add(mesh));
+
+    Array(200).fill().forEach(() => {
+        const star = createStars();
+        scene.add(star);
+    })
 
     return {
         scene,

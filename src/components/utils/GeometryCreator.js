@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { workDetails } from '../../data/WorkData'; // 导入共享的工作数据
 import { RoundedRectangle } from './RoundedRecCreator';
 
-const RADIUS = 4;
+const RADIUS = 10;
 
 export const createGeometry = () => {
     const loader = new THREE.TextureLoader();
@@ -22,7 +22,7 @@ export const createGeometry = () => {
         };
     });
     return objects.map((obj) => {
-        const geometry = RoundedRectangle(2, 3, 0.3, 10);
+        const geometry = RoundedRectangle(2, 3, 0.2, 10);
         const material = new THREE.MeshBasicMaterial({ map: obj.map, side: THREE.DoubleSide });
         const mesh = new THREE.Mesh(geometry, material);
         mesh.userData.route = obj.route;
@@ -31,5 +31,18 @@ export const createGeometry = () => {
         return mesh;
     });
 };
+
+export const createStars = () => {
+    const geometry = new THREE.SphereGeometry(0.25, 25, 24);
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+    const star = new THREE.Mesh(geometry, material);
+
+    const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100));
+
+    star.position.set(x, y, z);
+    console.log('create star');
+
+    return star;
+}
 
 export { RADIUS };

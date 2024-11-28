@@ -1,6 +1,6 @@
 // src/App.js
 import './App.css';
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -9,18 +9,36 @@ import WorkDetail from './components/WorkDetail';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
+import Loader from './components/Loader';
 import { ReactLenis } from 'lenis/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000); // 模拟加载时间
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const lenisOptions = {
-    duration: 1.2,
+    duration: 2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     direction: 'vertical',
     gestureDirection: 'vertical',
     smooth: true,
     smoothTouch: false,
+    smoothWheel: true,
     touchMultiplier: 2,
+    lerp: 0.01
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <ReactLenis root options={lenisOptions}>

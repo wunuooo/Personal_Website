@@ -10,11 +10,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  -webkit-user-select: none;
+  /* 禁止文字选择 */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  user-drag: none;
+  /* 禁止拖动 */
+  -webkit-user-drag: none;
+
 }
 
 html,
@@ -23,6 +28,42 @@ body {
   overflow: hidden;
 }
 
-.footer {
-  position: relative;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  /* 背景和毛玻璃效果 */
+  background-color: rgba(255, 255, 255, 0.2);
+  /* 半透明背景 */
+  backdrop-filter: blur(10px);
+  /* 毛玻璃效果 */
+  -webkit-backdrop-filter: blur(10px);
+  /* 兼容 Safari 的毛玻璃效果 */
+
+  /* 圆角和其他修饰 */
+  border-radius: 12px;
+  /* 圆角 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* 添加轻微阴影 */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  /* 半透明边框 */
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/*鼠标移动到选项上修改背景颜色 */
+li a:hover {
+  background-color: #7e7e7e;
 }

@@ -32,40 +32,48 @@ const ThreeScene = () => {
     }, [height]);
 
     useEffect(() => {
-        if (initComplete) {
-            const mountElement = mountRef.current;
+        if (!initComplete) return;
 
-            const { scene, camera, renderer, meshes } = createScene(mountElement, navigate);
-            const updateRotationSpeed = animateScene(renderer, scene, camera, meshes);
-            const { onMouseClick, onMouseMove, onMouseDown, onMouseUp } = createEventHandlers(mountElement, camera, meshes, navigate, updateRotationSpeed);
+        let scene, camera, renderer, meshes, updateRotationSpeed;
+        let onMouseMove, onMouseDown, onMouseUp, onMouseClick;
+        const mountElement = mountRef.current;
 
-            window.addEventListener('mousemove', (event) => {
-                onMouseMove(event);
-                updateCameraPosition(camera, event.clientX, event.clientY, mountElement.clientWidth, mountElement.clientHeight);
-            });
+        // 仅在初始时创建场景
+        const initScene = () => {
+            ({ scene, camera, renderer, meshes } = createScene(mountElement, navigate));
+            updateRotationSpeed = animateScene(renderer, scene, camera, meshes);
+            ({ onMouseClick, onMouseMove, onMouseDown, onMouseUp } = createEventHandlers(mountElement, camera, meshes, navigate, updateRotationSpeed));
+
+            window.addEventListener('mousemove', handleMouseMove);
             window.addEventListener('mousedown', onMouseDown);
             window.addEventListener('mouseup', onMouseUp);
             window.addEventListener('click', onMouseClick);
-
-            const handleResize = () => {
-                const width = mountElement.clientWidth;
-                const height = mountElement.clientHeight;
-                camera.aspect = width / height;
-                camera.updateProjectionMatrix();
-                renderer.setSize(width, height);
-            };
-
             window.addEventListener('resize', handleResize);
+        };
 
-            return () => {
-                mountElement.removeChild(renderer.domElement);
-                window.removeEventListener('mousemove', onMouseMove);
-                window.removeEventListener('mousedown', onMouseDown);
-                window.removeEventListener('mouseup', onMouseUp);
-                window.removeEventListener('click', onMouseClick);
-                window.removeEventListener('resize', handleResize);
-            };
-        }
+        const handleMouseMove = (event) => {
+            onMouseMove(event);
+            updateCameraPosition(camera, event.clientX, event.clientY, mountElement.clientWidth, mountElement.clientHeight);
+        };
+
+        const handleResize = () => {
+            const width = mountElement.clientWidth;
+            const height = mountElement.clientHeight;
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        };
+
+        initScene();
+
+        return () => {
+            mountElement.removeChild(renderer.domElement);
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mousedown', onMouseDown);
+            window.removeEventListener('mouseup', onMouseUp);
+            window.removeEventListener('click', onMouseClick);
+            window.removeEventListener('resize', handleResize);
+        };
     }, [initComplete, navigate]);
 
     return (
