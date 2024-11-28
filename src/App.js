@@ -19,7 +19,7 @@ const App = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000); // 模拟加载时间
+    }, 4000); // 模拟加载时间
 
     return () => clearTimeout(timer);
   }, []);
