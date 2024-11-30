@@ -1,6 +1,6 @@
 // src/scene/CreateScene.js
 import * as THREE from 'three';
-import { createGeometry, createStars } from './GeometryCreator';
+import { createRoundedRectangle, createStars } from './GeometryCreator';
 import { CAMERAHEIGHT } from './CameraControler'
 
 export const createScene = (mountElement, navigate) => {
@@ -23,10 +23,10 @@ export const createScene = (mountElement, navigate) => {
     renderer.setSize(mountElement.clientWidth, mountElement.clientHeight);
     mountElement.appendChild(renderer.domElement);
 
-    const meshes = createGeometry();
+    const meshes = createRoundedRectangle();
     meshes.forEach(mesh => scene.add(mesh));
 
-    Array(200).fill().forEach(() => {
+    Array(1000).fill().forEach(() => {
         const star = createStars();
         scene.add(star);
     })

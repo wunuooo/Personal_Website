@@ -5,7 +5,7 @@ import { RoundedRectangle } from './RoundedRecCreator';
 
 const RADIUS = 10;
 
-export const createGeometry = () => {
+export const createRoundedRectangle = () => {
     const loader = new THREE.TextureLoader();
     THREE.ColorManagement.enabled = true;  // 使用 color management
 
@@ -33,14 +33,17 @@ export const createGeometry = () => {
 };
 
 export const createStars = () => {
+    const colors = [0xff5733, 0x33ff57, 0x3357ff, 0xff33a6, 0xffff33, 0x33fff3];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
     const geometry = new THREE.SphereGeometry(0.25, 25, 24);
-    const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+    const material = new THREE.MeshBasicMaterial({ color: 0x000000 });
     const star = new THREE.Mesh(geometry, material);
 
     const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100));
 
     star.position.set(x, y, z);
-    console.log('create star');
+    console.log('create star with color:', randomColor);
 
     return star;
 }

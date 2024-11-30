@@ -18,8 +18,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="ml-0">
-                        <Link to="/" className="text-black mx-2">Language</Link>
-                        <Link to="/works" className="text-black mx-2">Dark</Link>
+                        <div>语言/深色模式</div>
                     </div>
                 </div>
             </div>

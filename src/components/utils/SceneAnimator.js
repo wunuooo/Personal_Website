@@ -58,10 +58,18 @@ export const animateScene = (renderer, scene, camera, meshes) => {
     };
 
     function objScrollTransform() {
-        const t = document.body.getBoundingClientRect().top;
-        radius = RADIUS + 0.01 * t;
-        camera.position.y = CAMERAHEIGHT + 0.01 * t;
-        console.log(`t ${t} radius ${radius} y ${camera.position.y}`);
+        // console.log(`t ${t} radius ${radius} y ${camera.position.y}`);
+
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollTop = -document.body.getBoundingClientRect().top;
+        const scrollProgress = scrollTop / totalHeight;
+        const t = Math.max(0, Math.min(1, scrollProgress));
+
+        radius = RADIUS - 10 * t;
+        camera.position.y = CAMERAHEIGHT - 10 * t;
+
+        console.log(t);
+
     }
     document.body.onscroll = objScrollTransform;
 
