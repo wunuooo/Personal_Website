@@ -14,7 +14,8 @@ const Navbar = () => {
                             <li><Link to="/" className="text-black mx-0">主页</Link></li>
                             <li><Link to="/works" className="text-black mx-0">作品集</Link></li>
                             <li><Link to="/portfolio" className="text-black mx-0">简历</Link></li>
-                            <li><Link to="/contact" className="text-black mx-0">联系我！</Link></li>
+                            <li><Link to="/blog" className="text-black mx-0">博客</Link></li>
+                            <li><Link to="/contact" className="text-black mx-0">找到我！</Link></li>
                         </ul>
                     </div>
                     <div className="ml-0">

@@ -68,7 +68,7 @@ export const animateScene = (renderer, scene, camera, meshes) => {
         radius = RADIUS - 10 * t;
         camera.position.y = CAMERAHEIGHT - 10 * t;
 
-        console.log(t);
+        // console.log(t);
 
     }
     document.body.onscroll = objScrollTransform;
