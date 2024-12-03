@@ -1,19 +1,30 @@
-// src/scene/SceneAnimator.js
+// src/components/utils/SceneAnimator.js
 import * as THREE from 'three';
 import { RADIUS } from './GeometryCreator';
 import { CAMERAHEIGHT } from './CameraControler'
+import { modelStore } from './ModelStore';
 
-export const animateScene = (renderer, scene, camera, meshes) => {
+export const animateScene = (renderer, scene, camera, faceMeshes) => {
     let angleOffset = 0;
     let rotationSpeed = 0;
     let radius = RADIUS;
+    let centerPotato;
+    let othersPotato;
     const ROTATION_DAMPING_FACTOR = 0.85;
     const ROTATION_SPEED_FACTOR = 0.02;
     const HEIGHT_LERP_FACTOR = 0.2; // 控制高度平滑过渡的速度
     const SCALE_LERP_FACTOR = 0.2;  // 控制缩放平滑过渡的速度
 
+    // 初始化订阅
+    modelStore.subscribe('potato', (potato) => {
+        centerPotato = potato;
+    });
+    modelStore.subscribe('potatoes', (potatoes) => {
+        othersPotato = potatoes;
+    });
+
     // 初始化每个物体的 userData 属性
-    meshes.forEach(mesh => {
+    faceMeshes.forEach(mesh => {
         if (!mesh.userData.originalScale) {
             mesh.userData.originalScale = mesh.scale.clone();
         }
@@ -32,8 +43,8 @@ export const animateScene = (renderer, scene, camera, meshes) => {
     });
 
     const updateMeshes = () => {
-        meshes.forEach((mesh, index) => {
-            const offset = (index / meshes.length) * Math.PI * 2;
+        faceMeshes.forEach((mesh, index) => {
+            const offset = (index / faceMeshes.length) * Math.PI * 2;
             const currentAngle = angleOffset + offset;
             const x = radius * Math.cos(currentAngle);
             const z = radius * Math.sin(currentAngle);
@@ -57,8 +68,8 @@ export const animateScene = (renderer, scene, camera, meshes) => {
         rotationSpeed = newSpeed;
     };
 
-    function objScrollTransform() {
-        // console.log(`t ${t} radius ${radius} y ${camera.position.y}`);
+    // 滚动函数
+    const objScrollTransform = () => {
 
         const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrollTop = -document.body.getBoundingClientRect().top;
@@ -68,9 +79,15 @@ export const animateScene = (renderer, scene, camera, meshes) => {
         radius = RADIUS - 10 * t;
         camera.position.y = CAMERAHEIGHT - 10 * t;
 
-        // console.log(t);
-
+        centerPotato.rotation.y = Math.PI * 2 * t;
+        othersPotato.forEach(potato => {
+            potato.rotation.x += Math.PI * 0.01 * t;
+            potato.rotation.y += Math.PI * 0.01 * t;
+            potato.rotation.z += Math.PI * 0.01 * t;
+        });
     }
+
+    // 绑定滚动
     document.body.onscroll = objScrollTransform;
 
     const animate = () => {
@@ -81,7 +98,6 @@ export const animateScene = (renderer, scene, camera, meshes) => {
         if (Math.abs(rotationSpeed) < 0.001) {
             rotationSpeed = 0;
         }
-
         updateMeshes();
 
         renderer.render(scene, camera);
@@ -90,4 +106,5 @@ export const animateScene = (renderer, scene, camera, meshes) => {
     animate();
 
     return updateRotationSpeed;
+
 };

@@ -4,22 +4,6 @@ import ThreeScene from '../components/ThreeScene';
 import { useLenis } from 'lenis/react';
 
 const Home = () => {
-    // const scrollRef = useRef(null);
-    // const lenis = useLenis();
-
-    // useEffect(() => {
-    //     if (!lenis) return;
-
-    //     // 监听滚动事件
-    //     lenis.on('scroll', ({ scroll, limit, velocity, direction, progress }) => {
-    //         // 可以根据scroll值来控制页面动画和过渡效果
-    //         console.log(scroll, progress);
-    //     });
-
-    //     return () => {
-    //         lenis.off('scroll');
-    //     };
-    // }, [lenis]);
 
     return (
         <div>
@@ -34,7 +18,7 @@ const Home = () => {
                 <div className="container mx-auto flex flex-col justify-center items-center text-center w-full h-full">
                     <h1 className="text-9xl font-bold mb-9">你好，我是 Nuo👋</h1>
                     <h2 className="text-7xl font-bold mb-7">欢迎来到我的个人主页</h2>
-                    <h3 className="text-xl font-bold mb-2">我是一名建筑设计从业者，正在学习游戏和软件开发</h3>
+                    <h3 className="text-xl font-bold mb-2">我是一名建筑设计从业者，但是并非只做设计</h3>
                     <p className="mt-8">
                         这里有我做过的部分项目，目前尚在补充和完善信息中
                     </p>
@@ -53,6 +37,15 @@ const Home = () => {
                 </div>
 
                 {/* 第三部分内容 */}
+                <div className="next-page container mx-auto flex flex-col justify-center items-center text-center w-full h-full">
+                    <h1 className="text-3xl font-bold mb-4">下一页内容标题</h1>
+                    <h2 className="text-2xl font-bold mb-3">继续浏览更多内容</h2>
+                    <p className="mb-4">
+                        这是一些有关下一页的描述。
+                    </p>
+                </div>
+
+                {/* 第四部分内容 */}
                 <div className="next-page container mx-auto flex flex-col justify-center items-center text-center w-full h-full">
                     <h1 className="text-3xl font-bold mb-4">下一页内容标题</h1>
                     <h2 className="text-2xl font-bold mb-3">继续浏览更多内容</h2>

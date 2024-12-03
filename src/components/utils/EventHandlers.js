@@ -1,4 +1,4 @@
-// src/scene/EventHandlers.js
+// src/components/utils/EventHandlers.js
 import * as THREE from 'three';
 
 export const createEventHandlers = (mountElement, camera, meshes, navigate, updateRotationSpeed) => {

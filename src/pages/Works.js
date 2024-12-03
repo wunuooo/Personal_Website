@@ -7,7 +7,7 @@ const Works = () => {
     const works = Object.keys(workDetails); // 从工作数据中获取工作列表
 
     return (
-        <div className="container mx-auto my-8 p-4">
+        <div className="container mx-auto my-8 p-4 main_content">
             <h1 className="text-3xl font-bold mb-4">作品展示</h1>
             {works.map(work => (
                 <p key={work}>

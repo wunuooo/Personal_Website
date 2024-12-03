@@ -5,6 +5,7 @@ import { createScene } from './utils/SceneCreator';
 import { createEventHandlers } from './utils/EventHandlers';
 import { animateScene } from './utils/SceneAnimator';
 import { updateCameraPosition } from './utils/CameraControler';
+import { modelStore } from './utils/ModelStore';
 
 const ThreeScene = () => {
     const mountRef = useRef(null);
@@ -34,15 +35,15 @@ const ThreeScene = () => {
     useEffect(() => {
         if (!initComplete) return;
 
-        let scene, camera, renderer, meshes, updateRotationSpeed;
+        let scene, camera, renderer, faceMeshes, updateRotationSpeed;
         let onMouseMove, onMouseDown, onMouseUp, onMouseClick;
         const mountElement = mountRef.current;
 
         // 仅在初始时创建场景
         const initScene = () => {
-            ({ scene, camera, renderer, meshes } = createScene(mountElement, navigate));
-            updateRotationSpeed = animateScene(renderer, scene, camera, meshes);
-            ({ onMouseClick, onMouseMove, onMouseDown, onMouseUp } = createEventHandlers(mountElement, camera, meshes, navigate, updateRotationSpeed));
+            ({ scene, camera, renderer, faceMeshes } = createScene(mountElement, navigate));
+            updateRotationSpeed = animateScene(renderer, scene, camera, faceMeshes);
+            ({ onMouseClick, onMouseMove, onMouseDown, onMouseUp } = createEventHandlers(mountElement, camera, faceMeshes, navigate, updateRotationSpeed));
 
             window.addEventListener('mousemove', handleMouseMove);
             window.addEventListener('mousedown', onMouseDown);

@@ -16,7 +16,7 @@ const WorkDetail = () => {
     }
 
     return (
-        <div className="container mx-auto my-8 p-4">
+        <div className="container mx-auto my-8 p-4 main_content">
             <h1 className="text-3xl font-bold mb-4">{work.title}</h1>
             <img src={work.imageUrl} alt={work.title} className="w-full h-auto mb-4" />
             <p className="mb-4">{work.description}</p>

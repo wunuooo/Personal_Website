@@ -47,3 +47,20 @@ html.lenis, html.lenis body {
       transform: scale(1.2);
   }
 }
+
+.main_content{
+  margin-top: 150px;
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  will-change: transform;
+}

@@ -1,5 +1,4 @@
-// indexed BufferGeometry
-
+// src/components/utils/RoundedRectangle.js
 import * as THREE from 'three';
 
 export const RoundedRectangle = (w, h, r, s) => {// width, height, radius corner, smoothness

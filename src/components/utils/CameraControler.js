@@ -1,6 +1,5 @@
-// src/scene/CameraController.js
+// src/components/utils/CameraController.js
 // import * as THREE from 'three';
-// import { CAMERAPOSY } from './SceneAnimator';
 
 // const MAX_VERTICAL_MOVE = 0.3; // 降低最大垂直移动距离
 const MAX_HORIZONTAL_MOVE = 0.3; // 降低最大水平移动距离
