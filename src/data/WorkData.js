@@ -1,7 +1,7 @@
 // src/data/workData.js
 const workContext = require.context('./works', false, /\.js$/);
 
-const workDetails = workContext.keys().reduce((acc, path) => {
+const workData = workContext.keys().reduce((acc, path) => {
     // 从文件名中提取工作名称，例如 './work1.js' 提取为 'work1'
     const workName = path.replace('./', '').replace('.js', '');
 
@@ -13,4 +13,4 @@ const workDetails = workContext.keys().reduce((acc, path) => {
     return acc;
 }, {});
 
-export { workDetails };
+export { workData };

@@ -1,11 +1,11 @@
 // src/components/WorkDetail.js
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { workDetails } from '../data/WorkData';
+import { workData } from '../data/WorkData';
 
 const WorkDetail = () => {
     const { id } = useParams();
-    const work = workDetails[id] || null;
+    const work = workData[id] || null;
 
     if (!work) {
         return (

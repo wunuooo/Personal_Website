@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { TextureLoader } from 'three';
-import { workDetails } from '../../data/WorkData'; // 导入共享的工作数据
+import { workData } from '../../data/WorkData'; // 导入共享的工作数据
 import { RoundedRectangle } from './RoundedRecCreator';
 
 const RADIUS = 10;
@@ -11,9 +11,9 @@ export const createRoundedRectangle = () => {
     const loader = new TextureLoader();
     THREE.ColorManagement.enabled = true;  // 使用 color management
 
-    // 创建几何体对象数组，根据 workDetails 中的工作数目
-    const objects = Object.keys(workDetails).map(key => {
-        const work = workDetails[key];
+    // 创建几何体对象数组，根据 workData 中的工作数目
+    const objects = Object.keys(workData).map(key => {
+        const work = workData[key];
         // 使用 require 加载图片
         const texture = loader.load(require(`../../${work.imageUrl}`));
         texture.colorSpace = THREE.SRGBColorSpace;  // 设置正确的颜色空间
