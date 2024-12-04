@@ -28,7 +28,8 @@ export const createRoundedRectangle = () => {
         const material = new THREE.MeshBasicMaterial({ map: obj.map, side: THREE.DoubleSide });
         const mesh = new THREE.Mesh(geometry, material);
         mesh.userData.route = obj.route;
-        mesh.userData.originalY = 0;
+        mesh.userData.originalY = 2 - (1 / (1 + Math.exp(10 * (0 + 0.8)))) * (1000000);
+        mesh.position.y = 2 - (1 / (1 + Math.exp(10 * (0 + 0.8)))) * (1000000);
 
         return mesh;
     });
@@ -66,7 +67,23 @@ export const createPotato = (isCenter) => {
                     // 设置模型大小（可选）
                     model.scale.set(20, 20, 20);
 
-                    const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(50));
+                    // 随机生成方法1
+                    // const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(20));
+                    // 随机生成方法2
+                    const angle = Math.random() * 2 * Math.PI;
+                    const radius = Math.sqrt(Math.random()) * 30; // 使用平方根调整分布
+                    const x = radius * Math.cos(angle);
+                    const y = radius * Math.sin(angle);
+                    const z = (Math.random() * 2 - 1.8) * 20; // 随机生成z轴位置
+                    // 随机生成方法3
+                    // const radius = 10; // 设置球体半径
+                    // const phi = Math.acos(2 * Math.random() - 1); // 经度
+                    // const theta = Math.random() * 2 * Math.PI; // 纬度
+                    // // 将球面坐标转换为笛卡尔坐标系
+                    // const x = radius * Math.sin(phi) * Math.cos(theta);
+                    // const y = radius * Math.sin(phi) * Math.sin(theta);
+                    // const z = radius * Math.cos(phi) - 10;
+
                     model.position.set(x, y, z);
 
                     // 添加材质
@@ -103,7 +120,7 @@ export const createPotato = (isCenter) => {
 
                     // 设置模型大小
                     model.scale.set(50, 50, 50);
-                    model.position.set(0, 0, 0);
+                    model.position.set(0, -5, 0);
 
                     // 添加材质
                     // 遍历模型中的所有网格，给每个网格应用材质和纹理

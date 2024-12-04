@@ -18,7 +18,7 @@ const Home = () => {
                 <div className="container mx-auto flex flex-col justify-center items-center text-center w-full h-full">
                     <h1 className="text-9xl font-bold mb-9">你好，我是 Nuo👋</h1>
                     <h2 className="text-7xl font-bold mb-7">欢迎来到我的个人主页</h2>
-                    <h3 className="text-xl font-bold mb-2">我是一名建筑设计从业者，但是并非只做设计</h3>
+                    <h3 className="text-3xl font-bold mb-2">我是一名建筑设计从业者，但是并不只做设计</h3>
                     <p className="mt-8">
                         这里有我做过的部分项目，目前尚在补充和完善信息中
                     </p>

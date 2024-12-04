@@ -54,7 +54,7 @@ export const animateScene = (renderer, scene, camera, faceMeshes) => {
             mesh.position.z = z;
 
             // 平滑过渡高度
-            mesh.position.y = THREE.MathUtils.lerp(mesh.position.y, mesh.userData.currentY || mesh.userData.originalY, HEIGHT_LERP_FACTOR);
+            // mesh.position.y = THREE.MathUtils.lerp(mesh.position.y, mesh.userData.currentY || mesh.userData.originalY, HEIGHT_LERP_FACTOR);
 
             // 平滑过渡缩放
             mesh.scale.lerp(mesh.userData.currentScale || mesh.userData.originalScale, SCALE_LERP_FACTOR);
@@ -78,14 +78,20 @@ export const animateScene = (renderer, scene, camera, faceMeshes) => {
         const scrollProgress = scrollTop / totalHeight;
         const t = Math.max(0, Math.min(1, scrollProgress));
 
-        radius = RADIUS - 10 * t;
+        // radius = RADIUS - 10 * t;
+        radius = 4 + (1 / (1 + Math.exp(10 * (t + 0.8)))) * (1000000);
+
         camera.position.y = CAMERAHEIGHT - 10 * t;
 
         centerPotato.rotation.y = Math.PI * 2 * t;
+        centerPotato.position.y = -5 + 10 * t;
         othersPotato.forEach(potato => {
             potato.rotation.x += Math.PI * 0.01 * t;
             potato.rotation.y += Math.PI * 0.01 * t;
             potato.rotation.z += Math.PI * 0.01 * t;
+        });
+        faceMeshes.forEach((mesh) => {
+            mesh.position.y = 2 - (1 / (1 + Math.exp(10 * (t + 0.8)))) * (1000000);
         });
     }
 
