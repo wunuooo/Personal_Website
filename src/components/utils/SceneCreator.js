@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { createRoundedRectangle, createPotato } from './GeometryCreator';
 import { CAMERAHEIGHT } from './CameraControler';
 import { modelStore } from './ModelStore';
-import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
+import { ModelLoadingState } from './ModelLoadingState';
 
 export const createScene = (mountElement, navigate) => {
     // 创建场景
@@ -29,24 +29,10 @@ export const createScene = (mountElement, navigate) => {
     const faceMeshes = createRoundedRectangle();
     faceMeshes.forEach(mesh => scene.add(mesh));
 
-    // Array(20).fill().forEach(() => {
-    //     const initializeScene = async () => {
-    //         const potatoes = await createPotato(false);
-    //         scene.add(potatoes);
-    //         modelStore.setPotatoes(potatoes);
-    //     };
-    //     initializeScene();
-    // })
-
-    // const initializeScene = async () => {
-    //     const potato = await createPotato(true);
-    //     scene.add(potato);
-    //     modelStore.setPotato(potato);
-    // };
-    // initializeScene();
-
     const initializeScene = async () => {
         try {
+            document.body.style.overflow = 'hidden';
+
             const potatoes = await Promise.all(
                 Array(40).fill().map(() => createPotato(false))
             );
@@ -58,6 +44,9 @@ export const createScene = (mountElement, navigate) => {
             const centerPotato = await createPotato(true);
             scene.add(centerPotato);
             modelStore.setPotato(centerPotato);
+
+            document.body.style.overflow = 'auto';
+            ModelLoadingState.setLoadingState(true);
         } catch (error) {
             console.error('模型加载失败:', error);
         }
@@ -65,8 +54,8 @@ export const createScene = (mountElement, navigate) => {
     initializeScene();
 
     // 环境光源
-    // const ambientLight = new THREE.AmbientLight(0xffffff, 20)
-    // scene.add(ambientLight)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 20)
+    scene.add(ambientLight)
     // 点光源
     const pointLight = new THREE.PointLight(0xffffff, 20);
     pointLight.position.set(10, -20, 20);
@@ -75,9 +64,6 @@ export const createScene = (mountElement, navigate) => {
     const directionalLight = new THREE.DirectionalLight(0xffffff, 10);
     directionalLight.position.set(10, 10, 10).normalize();
     scene.add(directionalLight);
-
-    // const pmremGenerator = new THREE.PMREMGenerator(renderer);
-    // scene.environment = pmremGenerator.fromScene(new RoomEnvironment(), 1).texture;
 
     return {
         scene,

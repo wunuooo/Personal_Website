@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { RADIUS } from './GeometryCreator';
 import { CAMERAHEIGHT } from './CameraControler'
 import { modelStore } from './ModelStore';
+import { ModelLoadingState } from './ModelLoadingState';
 
 export const animateScene = (renderer, scene, camera, faceMeshes) => {
     let angleOffset = 0;
@@ -70,6 +71,7 @@ export const animateScene = (renderer, scene, camera, faceMeshes) => {
 
     // 滚动函数
     const objScrollTransform = () => {
+        if (!ModelLoadingState.isModelsLoaded) return;
 
         const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrollTop = -document.body.getBoundingClientRect().top;
