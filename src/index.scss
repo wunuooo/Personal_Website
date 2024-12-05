@@ -61,9 +61,16 @@ li a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  transition: all 0.3s ease;
+  /* 添加平滑过渡效果 */
 }
 
-/*鼠标移动到选项上修改背景颜色 */
+/* 鼠标移动到选项上修改背景颜色和透明度 */
 li a:hover {
-  background-color: #7e7e7e;
+  background-color: rgba(126, 126, 126, 0.5);
+  /* 半透明的悬停背景 */
+  backdrop-filter: blur(5px);
+  /* 悬停时增加模糊效果 */
+  transform: scale(1.05);
+  /* 轻微放大效果 */
 }
