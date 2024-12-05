@@ -2,6 +2,14 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+.no-select {
+  -webkit-user-select: none;
+  /* 禁止文字选择 */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 
 body {
   margin: 0;
@@ -11,16 +19,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  -webkit-user-select: none;
-  /* 禁止文字选择 */
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  /* 移除全局的 user-select: none */
   user-drag: none;
-  /* 禁止拖动 */
   -webkit-user-drag: none;
-
 }
+
 
 html,
 body {

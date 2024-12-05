@@ -8,6 +8,7 @@ import Works from './pages/Works';
 import WorkDetail from './components/WorkDetail';
 import Portfolio from './pages/Portfolio';
 import Blog from './pages/Blog';
+import BlogPost from './components/BlogDetail';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
@@ -57,6 +58,7 @@ const AppContent = () => {
             <Route path="/works/:category/:id" element={<WorkDetail />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<Home />} />
           </Routes>

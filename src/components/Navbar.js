@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CustomModal from './CustomModal';
 
 const Navbar = () => {
     return (
@@ -19,7 +20,11 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="ml-0">
-                        <div>语言/深色模式</div>
+                        <CustomModal
+                            triggerText="语言/深色模式"
+                            title="功能开发中"
+                            content="语言切换和深色模式功能尚在开发中"
+                        />
                     </div>
                 </div>
             </div>

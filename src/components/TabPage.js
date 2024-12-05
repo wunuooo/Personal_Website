@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
+const categoryNames = {
+    'architecture': '建筑设计',
+    'craft': '实体手工',
+    'gamedev': '游戏开发',
+    'photo': '影像纪实',
+    'tool': '工具开发',
+    'visualization': '可视化',
+};
+
 const TabPage = ({ category, data, activeCategory }) => {
     const navigate = useNavigate();
     const [selectedTab, setSelectedTab] = useState(activeCategory);
@@ -28,7 +37,7 @@ const TabPage = ({ category, data, activeCategory }) => {
                             ? 'border-b-2 border-black-500 text-black-500'
                             : 'text-gray-600'}`}
                     >
-                        {tab}
+                        {categoryNames[tab] || tab}
                     </button>
                 ))}
             </div>
@@ -37,7 +46,7 @@ const TabPage = ({ category, data, activeCategory }) => {
                     <Link
                         to={`/${category}/${selectedTab}/${item.id}`}
                         key={item.id}
-                        className="block border rounded-lg p-4 hover:shadow-lg transition-shadow"
+                        className="block border rounded-lg p-4 duration-300 hover:shadow-xl"
                     >
                         <img
                             src={item.thumbnail}

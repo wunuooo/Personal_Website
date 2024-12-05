@@ -5,7 +5,7 @@ import ThreeScene from '../components/ThreeScene';
 const Home = () => {
 
     return (
-        <div>
+        <div className="no-select">
             {/* Three 背景内容 */}
             <div className="fixed top-0 left-0">
                 <ThreeScene />
