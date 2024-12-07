@@ -1,50 +1,40 @@
-export const architecture = [
-    {
-        id: 'project1',
-        title: '现代城市住宅',
-        shortDescription: '创新的城市居住空间设计',
-        thumbnail: '/images/works/architecture/architecture1.jpg',
-        fullDetails: {
-            description: '详细描述...',
-            date: '2024年8月',
-            projectType: '住宅设计',
-            participants: ['Alice', 'Bob']
-        }
-    },
-    {
-        id: 'project2',
-        title: '生态办公楼',
-        shortDescription: '可持续发展的办公建筑',
-        thumbnail: '/path/to/thumbnail2.jpg',
-        fullDetails: {
-            description: '详细描述...',
-            date: '2024年9月',
-            projectType: '商业建筑',
-            participants: ['Charlie', 'David']
-        }
-    },
-    {
-        id: 'project3',
-        title: '生态办公楼',
-        shortDescription: '可持续发展的办公建筑',
-        thumbnail: '/path/to/thumbnail2.jpg',
-        fullDetails: {
-            description: '详细描述...',
-            date: '2024年9月',
-            projectType: '商业建筑',
-            participants: ['Charlie', 'David']
-        }
-    },
-    {
-        id: 'project4',
-        title: '生态办公楼',
-        shortDescription: '可持续发展的办公建筑',
-        thumbnail: '/path/to/thumbnail2.jpg',
-        fullDetails: {
-            description: '详细描述...',
-            date: '2024年9月',
-            projectType: '商业建筑',
-            participants: ['Charlie', 'David']
-        }
-    }
-];
+// src/data/works/architecture.js
+
+export const architecture = {
+    order: 1, // 该类别在 TabPage 组件中的排序位置
+    data: [
+        {
+            id: 'project1',
+            title: '大学生山地运动俱乐部设计',
+            shortDescription: '结合地形及周边人群流线的运动俱乐部建筑设计',
+            thumbnail: '/images/works/architecture/project1.jpg',
+            fullDetails: {
+                description: '（待补充）',
+                date: '2021年11月',
+                projectType: '公共建筑 | 体育建筑',
+                participants: ['Nuo'],
+                images: [
+                    '/images/works/architecture/project1/detail1.jpg',
+                    '/images/works/architecture/project1/detail2.jpg',
+                ]
+            }
+        },
+        {
+            id: 'project2',
+            title: '高层商业综合体设计',
+            shortDescription: '结合中间层公共空间的高层商业综合体建筑设计',
+            thumbnail: '/images/works/architecture/project2.jpg',
+            fullDetails: {
+                description: '（待补充）',
+                date: '2023年1月',
+                projectType: '高层商业综合体',
+                participants: ['Nuo', 'LQF'],
+                images: [
+                    '/images/works/architecture/project2/detail1.jpg',
+                    '/images/works/architecture/project2/detail2.jpg',
+                ]
+            }
+        },
+        // 其他项目
+    ]
+};

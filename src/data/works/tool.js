@@ -1,35 +1,32 @@
-// export const tool = {
-//     title: '工作 2',
-//     description: '这里是工作 2 的详细描述。',
-//     date: '2024年8月',
-//     projectType: '类型 A',
-//     imageUrl: 'data/pics/tool.jpg',
-//     participants: ['Alice', 'Bob'],
-// };
+// src/data/works/tool.js
 
-export const tool = [
-    {
-        id: 'project1',
-        title: 'tool',
-        shortDescription: '创新的城市居住空间设计',
-        thumbnail: '/path/to/thumbnail1.jpg',
-        fullDetails: {
-            description: '详细描述...',
-            date: '2024年8月',
-            projectType: '住宅设计',
-            participants: ['Alice', 'Bob']
-        }
-    },
-    {
-        id: 'project2',
-        title: '生态办公楼',
-        shortDescription: '可持续发展的办公建筑',
-        thumbnail: '/path/to/thumbnail2.jpg',
-        fullDetails: {
-            description: '详细描述...',
-            date: '2024年9月',
-            projectType: '商业建筑',
-            participants: ['Charlie', 'David']
-        }
-    }
-];
+export const tool = {
+    order: 2, // 该类别在 TabPage 组件中的排序位置
+    data: [
+        {
+            id: 'project1',
+            title: 'Grasshopper 插件',
+            shortDescription: '为了解决设计课的问题而开发的一套简易小工具',
+            thumbnail: '/images/works/tool/project1.jpg',
+            fullDetails: {
+                description: '为了解决设计课的问题而开发的一套简易小工具，有助于更好地使用 Grasshopper。',
+                date: '2024年3月',
+                projectType: 'Grasshopper 二次开发',
+                participants: ['Nuo'],
+                images: [
+                    '/images/works/tool/project1/detail1.jpg',
+                    '/images/works/tool/project1/detail2.gif',
+                    '/images/works/tool/project1/detail3.gif',
+                    '/images/works/tool/project1/detail4.gif',
+                    '/images/works/tool/project1/detail5.gif',
+                    '/images/works/tool/project1/detail6.gif',
+                    '/images/works/tool/project1/detail7.gif',
+                    '/images/works/tool/project1/detail8.jpg',
+                    '/images/works/tool/project1/detail9.gif',
+                    '/images/works/tool/project1/detail10.gif',
+                ]
+            }
+        },
+        // 其他项目
+    ]
+};

@@ -1,5 +1,6 @@
 // src/components/utils/SceneAnimator.js
-import * as THREE from 'three';
+
+import React, { useEffect, useRef } from 'react';
 import { RADIUS } from './GeometryCreator';
 import { CAMERAHEIGHT } from './CameraControler'
 import { modelStore } from './ModelStore';
@@ -78,7 +79,6 @@ export const animateScene = (renderer, scene, camera, faceMeshes) => {
         const scrollProgress = scrollTop / totalHeight;
         const t = Math.max(0, Math.min(1, scrollProgress));
 
-        // radius = RADIUS - 10 * t;
         radius = 4 + (1 / (1 + Math.exp(10 * (t + 0.8)))) * (1000000);
 
         camera.position.y = CAMERAHEIGHT - 10 * t;
@@ -96,7 +96,8 @@ export const animateScene = (renderer, scene, camera, faceMeshes) => {
     }
 
     // 绑定滚动
-    document.body.onscroll = objScrollTransform;
+    // document.body.onscroll = objScrollTransform;
+    window.addEventListener('scroll', objScrollTransform);
 
     const animate = () => {
         requestAnimationFrame(animate);

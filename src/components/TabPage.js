@@ -1,13 +1,15 @@
+// src/components/TabPage.js
+
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const categoryNames = {
     'architecture': '建筑设计',
-    'craft': '实体手工',
-    'gamedev': '游戏开发',
+    'craft': '实体搭建',
+    'gamedev': '游戏制作',
     'photo': '影像纪实',
     'tool': '工具开发',
-    'visualization': '可视化',
+    'others': '其它项目',
 };
 
 const TabPage = ({ category, data, activeCategory }) => {

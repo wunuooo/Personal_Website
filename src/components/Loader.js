@@ -2,117 +2,6 @@
 import Lottie from 'lottie-web';
 import React, { useEffect, useState, useRef } from 'react';
 
-// const Loader = () => {
-
-//     useEffect(() => {
-//         const ani = Lottie.loadAnimation({
-//             container: document.getElementById("logo_box"),
-//             renderer: 'svg',
-//             loop: true,
-//             autoplay: true,
-//             path: 'nuo.json'
-//         });
-
-//         let readystate = 0;
-//         setTimeout(() => { readystate = 1 }, 2000);
-//         ani.addEventListener("enterFrame", () => {
-//             if (ani.currentFrame >= 50) {
-//                 if (readystate != 1) {
-//                     ani.goToAndPlay(0);
-//                 }
-//                 console.log("1");
-//             }
-//         });
-//         console.log("2");
-//         ani.addEventListener("complete", () => {
-//             document.querySelector(".loader").classList.add("loader_hidden"); console.log("loader");
-//             console.log("2.5");
-//         })
-//         console.log("3");
-//         return () => ani.destroy();
-//     }, []);
-
-
-//     return (
-//         <div className="loader">
-//             <div id="logo_box"></div>
-//             <p>Loading...</p>
-//         </div>
-//     );
-// };
-
-
-// const Loader = ({ onLoadComplete }) => {
-//     const [ani, setAni] = useState(null);
-
-//     useEffect(() => {
-//         const animation = Lottie.loadAnimation({
-//             container: document.getElementById("logo_box"),
-//             renderer: 'svg',
-//             loop: true,
-//             autoplay: true,
-//             path: 'nuo.json'
-//         });
-
-//         setAni(animation);
-
-//         const handleEnterFrame = () => {
-//             if (animation.currentFrame >= 50) {
-//                 // 通知父组件加载完成
-//                 onLoadComplete && onLoadComplete();
-//             }
-//         };
-
-//         animation.addEventListener("enterFrame", handleEnterFrame);
-
-//         return () => {
-//             animation.removeEventListener("enterFrame", handleEnterFrame);
-//             animation.destroy();
-//         };
-//     }, [onLoadComplete]);
-
-//     return (
-//         <div className="loader">
-//             <div id="logo_box"></div>
-//             <p>Loading...</p>
-//         </div>
-//     );
-// };
-
-
-// const Loader = ({ onLoadComplete }) => {
-//     const [ani, setAni] = useState(null);
-
-//     useEffect(() => {
-//         const animation = Lottie.loadAnimation({
-//             container: document.getElementById("logo_box"),
-//             renderer: 'svg',
-//             loop: true,
-//             autoplay: true,
-//             path: 'nuo.json'
-//         });
-
-//         setAni(animation);
-
-//         // 监听动画完成事件
-//         animation.addEventListener("complete", () => {
-//             // 通知父组件加载完成
-//             onLoadComplete && onLoadComplete();
-//         });
-
-//         return () => {
-//             animation.destroy();
-//         };
-//     }, [onLoadComplete]);
-
-//     return (
-//         <div className="loader">
-//             <div id="logo_box"></div>
-//             <p>Loading...</p>
-//         </div>
-//     );
-// };
-
 const Loader = ({ onLoadComplete }) => {
     useEffect(() => {
         const animation = Lottie.loadAnimation({
@@ -120,7 +9,7 @@ const Loader = ({ onLoadComplete }) => {
             renderer: 'svg',
             loop: false,
             autoplay: true,
-            path: 'nuo.json'
+            path: 'loader.json'
         });
 
         let playCount = 0;
@@ -170,9 +59,27 @@ const Loader = ({ onLoadComplete }) => {
     }, [onLoadComplete]);
 
     return (
-        <div className="loader">
-            <div id="logo_box"></div>
-            <p>Loading...</p>
+        <div className="loader" style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100vh'
+        }}>
+            <div
+                id="logo_box"
+                style={{
+                    width: '150px',
+                    height: '150px'
+                }}
+            ></div>
+            <p style={{
+                fontSize: '24px',
+                fontWeight: 'bold',
+                marginTop: '20px'
+            }}>
+                Loading...
+            </p>
         </div>
     );
 };
