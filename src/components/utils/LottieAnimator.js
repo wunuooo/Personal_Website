@@ -2,15 +2,15 @@
 
 import Lottie from 'lottie-web';
 import React, { useEffect, useRef } from 'react';
+// import animationData from '../../assets/svg/nuo.json';
 
 const LottieAnimator = ({
-    animationPath = 'nuo.json', // 动画路径，支持通过 props 动态传递
     loop = false, // 动画是否循环
     autoplay = false, // 动画是否自动播放
 }) => {
     const animationContainer = useRef(null);
     const animationInstance = useRef(null);
-
+    const animationData = '/assets/svg/nuo.json';
     useEffect(() => {
         // 初始化 Lottie 动画
         if (animationContainer.current) {
@@ -19,7 +19,7 @@ const LottieAnimator = ({
                 renderer: 'svg',
                 loop,
                 autoplay,
-                path: animationPath,
+                path: animationData,
             });
 
             const aniScroll = () => {
@@ -55,7 +55,7 @@ const LottieAnimator = ({
                 animationInstance.current = null;
             };
         }
-    }, [animationPath, loop, autoplay]); // 依赖项使动画路径和配置变化时重新初始化
+    }, [animationData, loop, autoplay]); // 依赖项使动画路径和配置变化时重新初始化
 
     return <div id="animation_box" ref={animationContainer} style={{ width: '100%', height: '100%' }} />;
 };

@@ -4,20 +4,37 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { TextureLoader } from 'three';
 import { RoundedRectangle } from './RoundedRecCreator';
 
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+
+// import whitePotato from '../../assets/models/WhitePotato.gltf';
+// import whitePotatoGerminated from '../../assets/models/WhitePotatoGerminated.gltf';
+// import whitePotato from '../../assets/models/WhitePotato.glb';
+// import whitePotatoGerminated from '../../assets/models/WhitePotatoGerminated.glb';
+const whitePotato = '/assets/models/WhitePotato.glb';
+const whitePotatoGerminated = '/assets/models/WhitePotatoGerminated.glb';
+
 const RADIUS = 10;
 
 export const createRoundedRectangle = () => {
     const loader = new TextureLoader();
     THREE.ColorManagement.enabled = true;  // 使用 color management
 
-    const images = [
-        { path: '/images/pics/others.jpg', route: '/works/others' },
-        { path: '/images/pics/architecture.jpg', route: '/works/architecture' },
-        { path: '/images/pics/craft.jpg', route: '/works/craft' },
-        { path: '/images/pics/gamedev.jpg', route: '/works/gamedev' },
-        { path: '/images/pics/photo.jpg', route: '/works/photo' },
-        { path: '/images/pics/tool.jpg', route: '/works/tool' },
+    // const images = [
+    //     { path: require('../../assets/pics/others.jpg'), route: '/works/others' },
+    //     { path: require('../../assets/pics/architecture.jpg'), route: '/works/architecture' },
+    //     { path: require('../../assets/pics/craft.jpg'), route: '/works/craft' },
+    //     { path: require('../../assets/pics/gamedev.jpg'), route: '/works/gamedev' },
+    //     { path: require('../../assets/pics/photo.jpg'), route: '/works/photo' },
+    //     { path: require('../../assets/pics/tool.jpg'), route: '/works/tool' },
+    // ];
 
+    const images = [
+        { path: '/assets/pics/others.jpg', route: '/works/others' },
+        { path: '/assets/pics/architecture.jpg', route: '/works/architecture' },
+        { path: '/assets/pics/craft.jpg', route: '/works/craft' },
+        { path: '/assets/pics/gamedev.jpg', route: '/works/gamedev' },
+        { path: '/assets/pics/photo.jpg', route: '/works/photo' },
+        { path: '/assets/pics/tool.jpg', route: '/works/tool' },
     ];
 
     const objects = images.map(img => {
@@ -46,35 +63,47 @@ export const createRoundedRectangle = () => {
 
 export const createPotato = (isCenter) => {
 
+    const draco = new DRACOLoader();
+    draco.setDecoderPath('./draco/');
+
     // 设置纹理加载器
-    const textureLoader = new THREE.TextureLoader();
     const textureCube = new THREE.CubeTextureLoader()
 
-    // 设置纹理加载的基础路径
-    textureLoader.setPath('/textures/');
-    textureCube.setPath('/textures/Standard-Cube-Map/')
-
-    const diffuseTexture = textureLoader.load('vg_whitePotato_albedo.png');
-    const normalTexture = textureLoader.load('vg_whitePotato_nrm.png');
-    const roughnessTexture = textureLoader.load('vg_whitePotato_rough.png');
-    const cubeTexture = textureCube.load(['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png']);
+    // 使用 require 加载纹理
+    // const cubeTexture = textureCube.load([
+    //     require('../../assets/textures/Standard-Cube-Map/px.png'),
+    //     require('../../assets/textures/Standard-Cube-Map/nx.png'),
+    //     require('../../assets/textures/Standard-Cube-Map/py.png'),
+    //     require('../../assets/textures/Standard-Cube-Map/ny.png'),
+    //     require('../../assets/textures/Standard-Cube-Map/pz.png'),
+    //     require('../../assets/textures/Standard-Cube-Map/nz.png')
+    // ]);
+    const cubeTexture = textureCube.load([
+        '/assets/textures/Standard-Cube-Map/px.png',
+        '/assets/textures/Standard-Cube-Map/nx.png',
+        '/assets/textures/Standard-Cube-Map/py.png',
+        '/assets/textures/Standard-Cube-Map/ny.png',
+        '/assets/textures/Standard-Cube-Map/pz.png',
+        '/assets/textures/Standard-Cube-Map/nz.png'
+    ]);
 
     if (!isCenter) {
         return new Promise((resolve, reject) => {
 
             const loader = new GLTFLoader();
+            loader.setDRACOLoader(draco);
             loader.load(
-                '/WhitePotato.gltf',
-                (gltf) => {
-                    const model = gltf.scene;
+                whitePotato,
+                (glb) => {
+                    const model = glb.scene;
 
                     // 随机旋转
                     model.rotation.x = Math.random() * Math.PI * 2;
                     model.rotation.y = Math.random() * Math.PI * 2;
                     model.rotation.z = Math.random() * Math.PI * 2;
 
-                    // 设置模型大小（可选）
-                    model.scale.set(20, 20, 20);
+                    // 设置模型大小
+                    model.scale.set(30, 30, 30);
 
                     const angle = Math.random() * 2 * Math.PI;
                     const radius = Math.sqrt(Math.random()) * 30; // 使用平方根调整分布
@@ -89,10 +118,6 @@ export const createPotato = (isCenter) => {
                     model.traverse((child) => {
                         if (child.isMesh) {
                             child.material = new THREE.MeshStandardMaterial({
-                                // map: diffuseTexture, // 颜色纹理
-                                // normalMap: normalTexture, // 法线纹理
-                                // normalScale: new THREE.Vector2(2, 2),
-                                // roughnessMap: roughnessTexture, // 粗糙度纹理
                                 envMap: cubeTexture,
                                 envMapIntensity: 2,
                                 roughness: 0, // 粗糙度
@@ -111,10 +136,11 @@ export const createPotato = (isCenter) => {
         return new Promise((resolve, reject) => {
 
             const loader = new GLTFLoader();
+            loader.setDRACOLoader(draco);
             loader.load(
-                '/WhitePotatoGerminated.gltf',
-                (gltf) => {
-                    const model = gltf.scene;
+                whitePotatoGerminated,
+                (glb) => {
+                    const model = glb.scene;
 
                     // 设置模型大小
                     model.scale.set(50, 50, 50);
@@ -125,13 +151,10 @@ export const createPotato = (isCenter) => {
                     model.traverse((child) => {
                         if (child.isMesh) {
                             child.material = new THREE.MeshStandardMaterial({
-                                // map: diffuseTexture, // 颜色纹理
-                                // normalMap: normalTexture, // 法线纹理
-                                // roughnessMap: roughnessTexture, // 粗糙度纹理
                                 envMap: cubeTexture,
                                 envMapIntensity: 2,
-                                roughness: 0, // 粗糙度
-                                metalness: 1, // 金属度
+                                roughness: 0,
+                                metalness: 1,
                                 color: 0xE0E0E0,
                             });
                         }

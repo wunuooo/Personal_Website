@@ -1,22 +1,25 @@
 // src/components/Loader.js
+
 import Lottie from 'lottie-web';
 import React, { useEffect, useState, useRef } from 'react';
+// import animationData from '../assets/svg/loader.json';
 
 const Loader = ({ onLoadComplete }) => {
+    const animationData = '/assets/svg/loader.json';
     useEffect(() => {
         const animation = Lottie.loadAnimation({
             container: document.getElementById("logo_box"),
             renderer: 'svg',
             loop: false,
             autoplay: true,
-            path: 'loader.json'
+            path: animationData,
         });
 
         let playCount = 0;
 
         const handleEnterFrame = () => {
             if (animation.currentFrame >= 55) {
-                if (playCount < 1) {
+                if (playCount < 8) {
                     // 移除之前的事件监听，防止重复触发
                     animation.removeEventListener('enterFrame', handleEnterFrame);
 
@@ -78,7 +81,7 @@ const Loader = ({ onLoadComplete }) => {
                 fontWeight: 'bold',
                 marginTop: '20px'
             }}>
-                Loading...
+                加载中...
             </p>
         </div>
     );

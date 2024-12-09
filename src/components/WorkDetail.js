@@ -103,7 +103,7 @@ const WorkDetail = () => {
                                     src={img}
                                     alt={`缩略图 ${index + 1}`}
                                     className={`w-12 h-12 md:w-16 md:h-16 object-cover rounded-md cursor-pointer m-1 ${index === currentImageIndex
-                                        ? 'border-2 border-blue-500'
+                                        ? 'border-2 border-black'
                                         : 'opacity-50 hover:opacity-100'
                                         }`}
                                     onClick={() => setCurrentImageIndex(index)}

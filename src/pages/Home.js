@@ -18,7 +18,7 @@ const Home = () => {
             <div className="absolute w-full h-full">
                 {/* 第一部分内容 */}
                 <div className="container mx-auto flex flex-col justify-center items-center text-center w-full h-full">
-                    <h1 className="text-[10rem] mb-9" style={{ fontFamily: "'OPPOSans-H', sans-serif" }}>你好，我是 Nuo</h1>
+                    <h1 className="text-[11rem] mb-9 font-bold">你好，我是 Nuo</h1>
                     <h2 className="text-7xl font-bold mb-7">欢迎来到我的个人主页</h2>
                     <h3 className="text-3xl font-bold mb-2">我是一名建筑学学生，有时候不只做建筑设计</h3>
                     <p className="mt-8">

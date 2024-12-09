@@ -34,7 +34,7 @@ export const createScene = (mountElement, navigate) => {
             document.body.style.overflow = 'hidden';
 
             const potatoes = await Promise.all(
-                Array(40).fill().map(() => createPotato(false))
+                Array(20).fill().map(() => createPotato(false))
             );
             potatoes.forEach(potato => {
                 scene.add(potato);
