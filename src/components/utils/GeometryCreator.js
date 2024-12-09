@@ -1,4 +1,5 @@
 // src/components/utils/GeometryCreator.js
+
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { TextureLoader } from 'three';
@@ -79,12 +80,12 @@ export const createPotato = (isCenter) => {
     //     require('../../assets/textures/Standard-Cube-Map/nz.png')
     // ]);
     const cubeTexture = textureCube.load([
-        '/assets/textures/Standard-Cube-Map/px.png',
-        '/assets/textures/Standard-Cube-Map/nx.png',
-        '/assets/textures/Standard-Cube-Map/py.png',
-        '/assets/textures/Standard-Cube-Map/ny.png',
-        '/assets/textures/Standard-Cube-Map/pz.png',
-        '/assets/textures/Standard-Cube-Map/nz.png'
+        '/assets/textures/Standard-Cube-Map/px.jpg',
+        '/assets/textures/Standard-Cube-Map/nx.jpg',
+        '/assets/textures/Standard-Cube-Map/py.jpg',
+        '/assets/textures/Standard-Cube-Map/ny.jpg',
+        '/assets/textures/Standard-Cube-Map/pz.jpg',
+        '/assets/textures/Standard-Cube-Map/nz.jpg'
     ]);
 
     if (!isCenter) {
@@ -136,6 +137,7 @@ export const createPotato = (isCenter) => {
         return new Promise((resolve, reject) => {
 
             const loader = new GLTFLoader();
+
             loader.setDRACOLoader(draco);
             loader.load(
                 whitePotatoGerminated,

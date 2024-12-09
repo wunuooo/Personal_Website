@@ -19,7 +19,7 @@ const Loader = ({ onLoadComplete }) => {
 
         const handleEnterFrame = () => {
             if (animation.currentFrame >= 55) {
-                if (playCount < 8) {
+                if (playCount < 6) {
                     // 移除之前的事件监听，防止重复触发
                     animation.removeEventListener('enterFrame', handleEnterFrame);
 
