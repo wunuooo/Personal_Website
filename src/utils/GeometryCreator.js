@@ -1,4 +1,4 @@
-// src/components/utils/GeometryCreator.js
+// src/utils/GeometryCreator.js
 
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';

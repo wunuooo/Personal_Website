@@ -13,8 +13,8 @@ import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
 import { ReactLenis } from 'lenis/react';
-import CustomCursor from "./components/utils/CustomMouse";
-import { ModelLoadingState } from './components/utils/ModelLoadingState';
+import CustomCursor from "./utils/CustomMouse";
+import { ModelLoadingState } from './utils/ModelLoadingState';
 
 // 处理路由变化和模型加载状态
 const AppContent = () => {

@@ -1,4 +1,4 @@
-// src/components/utils/CreateScene.js
+// src/utils/CreateScene.js
 import * as THREE from 'three';
 import { createRoundedRectangle, createPotato } from './GeometryCreator';
 import { CAMERAHEIGHT } from './CameraControler';
@@ -34,7 +34,7 @@ export const createScene = (mountElement, navigate) => {
             document.body.style.overflow = 'hidden';
 
             const potatoes = await Promise.all(
-                Array(20).fill().map(() => createPotato(false))
+                Array(40).fill().map(() => createPotato(false))
             );
             potatoes.forEach(potato => {
                 scene.add(potato);

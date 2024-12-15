@@ -1,4 +1,4 @@
-// src/components/utils/ModelStore.js
+// src/utils/ModelStore.js
 export const modelStore = {
     potato: null,
     potatoes: [],

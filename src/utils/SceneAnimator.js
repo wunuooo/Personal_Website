@@ -1,4 +1,4 @@
-// src/components/utils/SceneAnimator.js
+// src/utils/SceneAnimator.js
 
 import React, { useEffect, useRef } from 'react';
 import { RADIUS } from './GeometryCreator';

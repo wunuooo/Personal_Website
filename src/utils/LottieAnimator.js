@@ -1,4 +1,4 @@
-// src/components/utils/LottieAnimator.js
+// src/utils/LottieAnimator.js
 
 import Lottie from 'lottie-web';
 import React, { useEffect, useRef } from 'react';

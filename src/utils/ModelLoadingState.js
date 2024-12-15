@@ -1,4 +1,4 @@
-// src/components/utils/ModelLoadingState.js
+// src/utils/ModelLoadingState.js
 export const ModelLoadingState = {
     isModelsLoaded: false,
     setLoadingState(state) {

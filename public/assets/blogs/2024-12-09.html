@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开发日志 | 优化网页加载速度</title>
+    <meta name="date" content="2024-12-09">
+    <meta name="tags" content="随笔,开发">
+</head>
+
+<body>
+    <article>
+        <p>前天晚上高高兴兴把打包出来的文件上传了服务器，结果一访问傻眼了，主页的three场景要加载一分钟多，令我十分郁闷，因此虽然发了公众号，但是无心转发朋友圈。因此今天简单排查了下，发现是glb文件加载慢或许是一个影响比较大的因素，4兆多的模型要花二十几秒才能从服务器拉取下来，故用blender压缩了模型大小，这样操作处理后页面加载速度快了许多。
+        </p>
+        <p>但是这也导致了一个新的问题，模型看起来表面不是很平滑，还需要后续考虑别的方法处理。同时除了gltf模型外，图片也加载得没有想象中的快，因此不知道是不是因为服务器的带宽比较小而造成了以上所有问题，有待后续研究解决。
+        </p>
+    </article>
+</body>
+
+</html>

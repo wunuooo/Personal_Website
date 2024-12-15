@@ -1,4 +1,4 @@
-// src/components/utils/CameraController.js
+// src/utils/CameraController.js
 
 const MAX_HORIZONTAL_MOVE = 0.3; // 降低最大水平移动距离
 const CAMERAHEIGHT = 7; // 摄像机初始高度

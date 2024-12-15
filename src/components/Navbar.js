@@ -28,7 +28,7 @@ const Navbar = () => {
                                 </div>
                             )}
                             title="语言设置"
-                            content="WORK IN PROGRESS"
+                            content="开发中 orz"
                         />
                         <CustomModal
                             triggerElement={(
@@ -37,7 +37,7 @@ const Navbar = () => {
                                 </div>
                             )}
                             title="深色模式"
-                            content="WORK IN PROGRESS"
+                            content="开发中 orz"
                         />
                     </div>
                 </div>

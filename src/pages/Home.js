@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import ThreeScene from '../components/ThreeScene';
-import LottieAnimator from '../components/utils/LottieAnimator';
+import LottieAnimator from '../utils/LottieAnimator';
 
 const Home = () => {
     const lottieRef = useRef(null);
