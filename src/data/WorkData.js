@@ -27,4 +27,4 @@ const orderedWorkData = sortedCategories.reduce((acc, category) => {
     return acc;
 }, {});
 
-export { orderedWorkData as workData };
+export { orderedWorkData as WorkData };
